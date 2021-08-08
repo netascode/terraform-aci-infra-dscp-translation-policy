@@ -14,35 +14,91 @@ terraform {
 module "main" {
   source = "../.."
 
-  name        = "ABC"
-  alias       = "ALIAS"
-  description = "DESCR"
+  admin_state   = true
+  control_plane = "CS1"
+  level_1       = "CS2"
+  level_2       = "CS3"
+  level_3       = "CS4"
+  level_4       = "CS5"
+  level_5       = "CS6"
+  level_6       = "CS7"
+  policy_plane  = "AF11"
+  span          = "AF12"
+  traceroute    = "AF13"
 }
 
-data "aci_rest" "fvTenant" {
-  dn = "uni/tn-ABC"
+data "aci_rest" "qosDscpTransPol" {
+  dn = "uni/tn-infra/dscptranspol-default"
 
   depends_on = [module.main]
 }
 
-resource "test_assertions" "fvTenant" {
-  component = "fvTenant"
+resource "test_assertions" "qosDscpTransPol" {
+  component = "qosDscpTransPol"
 
-  equal "name" {
-    description = "name"
-    got         = data.aci_rest.fvTenant.content.name
-    want        = "ABC"
+  equal "adminSt" {
+    description = "adminSt"
+    got         = data.aci_rest.qosDscpTransPol.content.adminSt
+    want        = "enabled"
   }
 
-  equal "nameAlias" {
-    description = "nameAlias"
-    got         = data.aci_rest.fvTenant.content.nameAlias
-    want        = "ALIAS"
+  equal "control" {
+    description = "control"
+    got         = data.aci_rest.qosDscpTransPol.content.control
+    want        = "CS1"
   }
 
-  equal "descr" {
-    description = "descr"
-    got         = data.aci_rest.fvTenant.content.descr
-    want        = "DESCR"
+  equal "level1" {
+    description = "level1"
+    got         = data.aci_rest.qosDscpTransPol.content.level1
+    want        = "CS2"
+  }
+
+  equal "level2" {
+    description = "level2"
+    got         = data.aci_rest.qosDscpTransPol.content.level2
+    want        = "CS3"
+  }
+
+  equal "level3" {
+    description = "level3"
+    got         = data.aci_rest.qosDscpTransPol.content.level3
+    want        = "CS4"
+  }
+
+  equal "level4" {
+    description = "level4"
+    got         = data.aci_rest.qosDscpTransPol.content.level4
+    want        = "CS5"
+  }
+
+  equal "level5" {
+    description = "level5"
+    got         = data.aci_rest.qosDscpTransPol.content.level5
+    want        = "CS6"
+  }
+
+  equal "level6" {
+    description = "level6"
+    got         = data.aci_rest.qosDscpTransPol.content.level6
+    want        = "CS7"
+  }
+
+  equal "policy" {
+    description = "policy"
+    got         = data.aci_rest.qosDscpTransPol.content.policy
+    want        = "AF11"
+  }
+
+  equal "span" {
+    description = "span"
+    got         = data.aci_rest.qosDscpTransPol.content.span
+    want        = "AF12"
+  }
+
+  equal "traceroute" {
+    description = "traceroute"
+    got         = data.aci_rest.qosDscpTransPol.content.traceroute
+    want        = "AF13"
   }
 }
