@@ -13,7 +13,8 @@ Note that this example will create resources. Resources can be destroyed with `t
 
 ```hcl
 module "aci_infra_dscp_translation_policy" {
-  source = "netascode/infra-dscp-translation-policy/aci"
+  source  = "netascode/infra-dscp-translation-policy/aci"
+  version = ">= 0.0.1"
 
   admin_state   = true
   control_plane = "CS1"
