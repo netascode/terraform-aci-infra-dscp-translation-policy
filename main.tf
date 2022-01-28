@@ -1,4 +1,4 @@
-resource "aci_rest" "qosDscpTransPol" {
+resource "aci_rest_managed" "qosDscpTransPol" {
   dn         = "uni/tn-infra/dscptranspol-default"
   class_name = "qosDscpTransPol"
   content = {

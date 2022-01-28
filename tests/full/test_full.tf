@@ -5,8 +5,8 @@ terraform {
     }
 
     aci = {
-      source  = "netascode/aci"
-      version = ">=0.2.0"
+      source  = "CiscoDevNet/aci"
+      version = ">=2.0.0"
     }
   }
 }
@@ -27,7 +27,7 @@ module "main" {
   traceroute    = "AF13"
 }
 
-data "aci_rest" "qosDscpTransPol" {
+data "aci_rest_managed" "qosDscpTransPol" {
   dn = "uni/tn-infra/dscptranspol-default"
 
   depends_on = [module.main]
@@ -38,67 +38,67 @@ resource "test_assertions" "qosDscpTransPol" {
 
   equal "adminSt" {
     description = "adminSt"
-    got         = data.aci_rest.qosDscpTransPol.content.adminSt
+    got         = data.aci_rest_managed.qosDscpTransPol.content.adminSt
     want        = "enabled"
   }
 
   equal "control" {
     description = "control"
-    got         = data.aci_rest.qosDscpTransPol.content.control
+    got         = data.aci_rest_managed.qosDscpTransPol.content.control
     want        = "CS1"
   }
 
   equal "level1" {
     description = "level1"
-    got         = data.aci_rest.qosDscpTransPol.content.level1
+    got         = data.aci_rest_managed.qosDscpTransPol.content.level1
     want        = "CS2"
   }
 
   equal "level2" {
     description = "level2"
-    got         = data.aci_rest.qosDscpTransPol.content.level2
+    got         = data.aci_rest_managed.qosDscpTransPol.content.level2
     want        = "CS3"
   }
 
   equal "level3" {
     description = "level3"
-    got         = data.aci_rest.qosDscpTransPol.content.level3
+    got         = data.aci_rest_managed.qosDscpTransPol.content.level3
     want        = "CS4"
   }
 
   equal "level4" {
     description = "level4"
-    got         = data.aci_rest.qosDscpTransPol.content.level4
+    got         = data.aci_rest_managed.qosDscpTransPol.content.level4
     want        = "CS5"
   }
 
   equal "level5" {
     description = "level5"
-    got         = data.aci_rest.qosDscpTransPol.content.level5
+    got         = data.aci_rest_managed.qosDscpTransPol.content.level5
     want        = "CS6"
   }
 
   equal "level6" {
     description = "level6"
-    got         = data.aci_rest.qosDscpTransPol.content.level6
+    got         = data.aci_rest_managed.qosDscpTransPol.content.level6
     want        = "CS7"
   }
 
   equal "policy" {
     description = "policy"
-    got         = data.aci_rest.qosDscpTransPol.content.policy
+    got         = data.aci_rest_managed.qosDscpTransPol.content.policy
     want        = "AF11"
   }
 
   equal "span" {
     description = "span"
-    got         = data.aci_rest.qosDscpTransPol.content.span
+    got         = data.aci_rest_managed.qosDscpTransPol.content.span
     want        = "AF12"
   }
 
   equal "traceroute" {
     description = "traceroute"
-    got         = data.aci_rest.qosDscpTransPol.content.traceroute
+    got         = data.aci_rest_managed.qosDscpTransPol.content.traceroute
     want        = "AF13"
   }
 }

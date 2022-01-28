@@ -1,4 +1,4 @@
 output "dn" {
-  value       = aci_rest.qosDscpTransPol.id
+  value       = aci_rest_managed.qosDscpTransPol.id
   description = "Distinguished name of `qosDscpTransPol` object."
 }
